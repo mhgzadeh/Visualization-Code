@@ -1,0 +1,139 @@
+﻿<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Material brewer</title>
+  <link rel="stylesheet" type="text/css" href="x3dom.css">
+  </link>
+</head>
+
+<body class="ui-widget-content" style="border:0;">
+  <table width="100%" height="85%" border="0">
+    <tr>
+      <td width="50%" align="center" valign="top" scope="col">
+        <X3D id="shapedata" width="600px" height="600px" style="float:left">
+          <Scene>
+            <Shape>
+              <Appearance>
+                <Material id="material"> </Material>
+              </Appearance>
+              <Sphere radius="2.0"> </Sphere>
+            </Shape>
+          </Scene>
+        </X3D>
+      </td>
+      <td width="50%" align="left" valign="top" scope="col">
+        The following example will show you haw to interactively modify the 3D scene.
+        See <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/shape.html#Material"
+          target="_blank">
+          X3D Material node definition </a> for an explanation of the different color attributes.
+        <br>
+        <br><b>ambientIntensity</b><br>
+        ambientIntensity: 0 <input type="range" id="ambientIntensity" min="0.0" max="1.0" step="0.05" value="0.2"
+          onchange="changeColor()" />1<br>
+        <br>
+        <b>diffue color</b>
+        <br>
+        red: 0 <input type="range" id="diffuse_r" min="0.0" max="1.0" step="0.05" value="0.8"
+          onchange="changeColor()" />1<br>
+        green: 0 <input type="range" id="diffuse_g" min="0.0" max="1.0" step="0.05" value="0.8"
+          onchange="changeColor()" />1<br>
+        blue: 0 <input type="range" id="diffuse_b" min="0.0" max="1.0" step="0.05" value="0.8"
+          onchange="changeColor()" />1<br>
+        <br><b>emissive color</b><br>
+        red: 0 <input type="range" id="emissive_r" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        green: 0 <input type="range" id="emissive_g" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        blue: 0 <input type="range" id="emissive_b" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        <br>
+        <b>specular color</b>
+        <br>
+        red: 0 <input type="range" id="specular_r" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        green: 0 <input type="range" id="specular_g" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        blue: 0 <input type="range" id="specular_b" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        <br>
+        <b>shininess</b>
+        <br>
+        shininess: 0 <input type="range" id="shininess" min="0.0" max="1.0" step="0.05" value="0.2"
+          onchange="changeColor()" />1<br>
+        <br>
+        <b>transparency</b>
+        <br>
+        transparency : 0 <input type="range" id="transparency" min="0.0" max="1.0" step="0.05" value="0.0"
+          onchange="changeColor()" />1<br>
+        <br>
+        <p>
+          <br><br>
+          The diffuse color of a material will be interactively changed.
+          A JavaScript <a href="http://jqueryui.com/slider/#colorpicker target=" _blank"> RGB color picker </a> is used
+          and modified.
+          If the RGB color value is changed, the diffuse material of the sphere shall be changed as well. So we need to
+          get the Material node first.
+          This is done by the getElementById function in X3DOM. Of course, the Material node needs to have an unique id.
+        <pre>
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	  &lt;Scene&gt;
+	    &lt;Shape&gt; 
+   	      &lt;Appearance&gt;
+     	        &lt;Material id="material" diffuseColor="0.980, 0.502, 0.447"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+	      &lt;Sphere radius="2.0"&gt; &lt;/Sphere&gt;
+ 	    &lt;/Shape&gt;
+	  &lt;/Scene&gt;
+	&lt;/X3D&gt;
+    </pre>
+        <br>
+        For example, if the diffuse color should be set to red, the Material node is referenced by its id and the
+        attribute diffuseColor is set to
+        "1.0 0.0 0.0". The attribute value is always a string.
+        <pre>
+    var mat = document.getElementById("material");
+    mat.setAttribute("diffuseColor", "1.0 0.0 0.0");      
+    </pre>
+        In the example, the RGB value is fetched from the slider.
+        <pre>
+      var mat = document.getElementById("material");
+      rgbstring = " "+ red + " " + green + " " + blue;
+      mat.setAttribute("diffuseColor", rgbstring);
+    </pre>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="x3dom.js"></script>
+  <script>
+    /**
+    * Change the settings of the directional light
+    *
+    * @param field string: Name of the field
+    * @param value number: New value to set
+    */
+    function changeColor() {
+      var material = document.getElementById("material");
+      var emissive_rgb = " " + document.getElementById("emissive_r").value;
+      emissive_rgb += " " + document.getElementById("emissive_g").value;
+      emissive_rgb += " " + document.getElementById("emissive_b").value;
+      material.setAttribute("emissiveColor", emissive_rgb);
+      var diffuse_rgb = " " + document.getElementById("diffuse_r").value;
+      diffuse_rgb += " " + document.getElementById("diffuse_g").value;
+      diffuse_rgb += " " + document.getElementById("diffuse_b").value;
+      material.setAttribute("diffuseColor", diffuse_rgb);
+      var specular_rgb = " " + document.getElementById("specular_r").value;
+      specular_rgb += " " + document.getElementById("specular_g").value;
+      specular_rgb += " " + document.getElementById("specular_b").value;
+      material.setAttribute("specularColor", specular_rgb);
+      var ambientIntensity = " " + document.getElementById("ambientIntensity").value;
+      material.setAttribute("ambientIntensity", ambientIntensity);
+      var shininess = " " + document.getElementById("shininess").value;
+      material.setAttribute("shininess", shininess);
+      var transparency = " " + document.getElementById("transparency").value;
+      material.setAttribute("transparency", transparency);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+﻿<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> indexed face set and material </title>
+	<link rel="stylesheet" type="text/css" href="x3dom.css">
+	</link>
+</head>
+
+<body>
+	<h1>indexed face set and material</h1>
+	<table width="100%" height="85%" border="0">
+		<tr>
+			<td width="50%" align="center" valign="top" scope="col">
+				<X3D id="shapedata" width="600px" height="600px" style="float:left">
+					<Scene>
+						<Shape>
+							<!-- roof -->
+							<Appearance>
+								<Material diffuseColor="0.980, 0.502, 0.447"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex="  7 4 8 -1 4 5 8 -1 5 6 8 -1 6 7 8 -1">
+								<Coordinate DEF="pointset" point="-1 0 1, 1 0 1, 1 0 -1, -1 0 -1,
+             	            -1 2 1, 1 2 1, 1 2 -1, -1 2 -1, 0 3 0 ">
+								</Coordinate>
+							</IndexedFaceSet>
+						</Shape>
+						<Shape>
+							<!-- wall -->
+							<Appearance>
+								<Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex=" 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
+								<Coordinate USE="pointset">
+								</Coordinate>
+							</IndexedFaceSet>
+						</Shape>
+						<Shape>
+							<!-- ground -->
+							<Appearance>
+								<Material diffuseColor="0.180, 0.280, 0.230"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex=" 0 3 2 1 -1 ">
+								<Coordinate USE="pointset">
+								</Coordinate>
+							</IndexedFaceSet>
+						</Shape>
+					</Scene>
+				</X3D>
+			</td>
+			<td width="50%" align="left" valign="top" scope="col">
+				One shape has only ony appearance. If different colors for the building elements roof, wall and ground surfaces
+				shall be used,
+				we need to have different shape for these elements. However, they can share the same point set. The following
+				example uses different
+				Material for roo, wall, and ground surfaces.
+				<br>
+				<pre class="prettyprint">
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	  &lt;Scene&gt;
+	    &lt;Shape&gt;
+	      &lt;!-- roof --&gt;
+   	      &lt;Appearance&gt;
+     	        &lt;Material diffuseColor="0.980, 0.502, 0.447"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+  	      &lt;IndexedFaceSet solid="true" ccw ="true" 
+   	        coordIndex="  7 4 8 -1 4 5 8 -1 5 6 8 -1 6 7 8 -1"&gt;
+   	        &lt;Coordinate DEF="pointset" point="-1 0 1, 1 0 1, 1 0 -1, -1 0 -1,
+             	            -1 2 1, 1 2 1, 1 2 -1, -1 2 -1, 0 3 0 " &gt; 
+   	        &lt;/Coordinate&gt;
+	      &lt;/IndexedFaceSet&gt;
+	    &lt;/Shape&gt;
+	    &lt;Shape&gt;
+	      &lt;!-- wall --&gt;
+   	      &lt;Appearance&gt;
+     	        &lt;Material diffuseColor="0.753, 0.753, 0.753"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+  	      &lt;IndexedFaceSet solid="true" ccw ="true" 
+   	        coordIndex=" 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1"&gt;
+   	        &lt;Coordinate USE="pointset" &gt; 
+   	        &lt;/Coordinate&gt;
+	      &lt;/IndexedFaceSet&gt;
+	    &lt;/Shape&gt;
+	    &lt;Shape&gt;
+	      &lt;!-- ground --&gt;
+   	      &lt;Appearance&gt;
+     	        &lt;Material diffuseColor="0.180, 0.280, 0.230"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+  	      &lt;IndexedFaceSet solid="true" ccw ="true" 
+   	        coordIndex=" 0 3 2 1 -1 "&gt;
+   	        &lt;Coordinate USE="pointset" &gt; 
+   	        &lt;/Coordinate&gt;
+	      &lt;/IndexedFaceSet&gt;
+	    &lt;/Shape&gt;
+	  &lt;/Scene&gt;
+	&lt;/X3D&gt;
+        </pre>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="x3dom.js"></script>
+</body>
+
+</html>

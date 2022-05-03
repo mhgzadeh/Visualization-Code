@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> External File </title>
+  <link rel="stylesheet" type="text/css" href="x3dom.css">
+  </link>
+</head>
+
+<body>
+  <h1> External File </h1>
+  <table width="100%" height="85%" border="0">
+    <tr>
+      <td width="50%" align="center" valign="top" scope="col">
+        <X3D id="shapedata" width="600px" height="600px">
+          <Scene>
+            <background transparency='0' skyColor='1 1 1'></background>
+            <inline id="inline" url="x3d/HFT_Bau1_0.x3d"></inline>
+          </Scene>
+        </X3D>
+      </td>
+      <td width="50%" align="left" valign="top" scope="col">
+        <p>
+          Any X3D scene can be integrated into the Scene by using the &lt;inline&gt; node. The X3D model has be be
+          stored on a web server. The X3D file should be optimized using aopt. It is not necessary, but usually improves
+          performance a lot.
+        </p>
+        <pre>
+&lt;X3D id="shapedata"&gt;
+  &lt;Scene&gt;
+    &lt;background transparency='0' skyColor='1 1 1'&gt;&lt;/background&gt;
+    &lt;inline url="HFT_Bau1_0.x3d"&gt;&lt;/inline&gt;
+  &lt;/Scene&gt;
+&lt;/X3D&gt
+</pre>
+        <select id="combo" style="margin-bottom:20px" onchange="comboCallback();">
+          <option value="x3d/HFT_Bau1_0.x3d">HFT Building 1 Floor 0</option>
+          <option value="x3d/HFT_Bau1_1.x3d">HFT Building 1 Floor 1</option>
+          <option value="x3d/HFT_Bau1_2.x3d">HFT Building 1 Floor 2</option>
+          <option value="x3d/HFT_Bau1_3.x3d">HFT Building 1 Floor 3</option>
+          <option value="x3d/HFT_Bau2_0.x3d">HFT Building 2 Floor 0</option>
+          <option value="x3d/HFT_Bau2_3.x3d">HFT Building 2 Floor 3</option>
+          <option value="x3d/HFT_Bau2_4.x3d">HFT Building 2 Floor 4</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="x3dom.js"></script>
+  <script>
+    function comboCallback() {
+      var index = document.getElementById("combo").selectedIndex;
+      var value = document.getElementsByTagName("option")[index].value;
+      document.getElementById("inline").url = value;
+    }
+  </script>
+</body>
+
+</html>

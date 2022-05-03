@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Bar Chart </title>
+	<link rel="stylesheet" type="text/css" href="x3dom.css">
+	</link>
+</head>
+
+<body>
+	<h1> Bar Chart </h1>
+	<table width="100%" height="85%" border="0">
+		<tr>
+			<td width="50%" align="center" valign="top" scope="col">
+				<X3D id="shapedata" width="600px" height="600px" style="float:left">
+					<Scene>
+						<background transparency='0' skyColor='1 1 1'> </background>
+						<!-- Invoke CoordinateAxes in other scenes as an Inline child inside a scaling Transform node, at the topmost level of the scene graph. -->
+						<!-- Each arrow goes from +1m to -1m to allow linear scaling to fit a scene -->
+						<!-- Note each label rotates about the scene's vertical Y axis for consistency, enabling local orientation by user -->
+						<Group>
+							<!-- Vertical Y arrow and label -->
+							<Group DEF='ArrowGreen'>
+								<Transform translation='0 1 0'>
+									<Shape>
+										<Appearance DEF='Green'>
+											<Material diffuseColor='0 1 0'> </Material>
+										</Appearance>
+										<Cylinder DEF='ArrowCylinder' radius='.025' top='false'> </Cylinder>
+									</Shape>
+								</Transform>
+								<Transform translation='0 2 0'>
+									<Shape>
+										<Appearance USE='Green'> </Appearance>
+										<Cone DEF='ArrowCone' bottomRadius='.05' height='.1'> </Cone>
+									</Shape>
+								</Transform>
+							</Group>
+							<Transform translation='0 2.08 0'>
+								<Billboard>
+									<Shape>
+										<Appearance DEF='LABEL_APPEARANCE'>
+											<Material diffuseColor='0 0 0'> </Material>
+										</Appearance>
+										<Text id='chartlabel-y' string='"year"'>
+											<FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'> </FontStyle>
+										</Text>
+									</Shape>
+								</Billboard>
+							</Transform>
+							<Transform rotation='0 0 1 -1.57079'>
+								<!-- Horizontal X arrow and label -->
+								<Group DEF='ArrowRed'>
+									<Transform translation='0 1 0'>
+										<Shape>
+											<Appearance DEF='Red'>
+												<Material diffuseColor='.7 .1 .1' emissiveColor='.33 0 0' />
+											</Appearance>
+											<Cylinder USE='ArrowCylinder'> </Cylinder>
+										</Shape>
+									</Transform>
+									<Transform translation='0 2 0'>
+										<Shape>
+											<Appearance USE='Red'> </Appearance>
+											<Cone USE='ArrowCone'> </Cone>
+										</Shape>
+									</Transform>
+								</Group>
+								<Transform rotation='0 0 1 1.57079' translation='0 2 0'>
+									<!-- note label rotated back to original coordinate frame -->
+									<Billboard>
+										<Shape>
+											<Appearance USE='LABEL_APPEARANCE'>
+											</Appearance>
+											<Text id='chartlabel-x' string='"building id"'>
+												<FontStyle USE='LABEL_FONT'>
+											</Text>
+										</Shape>
+									</Billboard>
+								</Transform>
+							</Transform>
+							<!-- bars -->
+							<Transform id="bar1" translation='0.25 0.5 0'>
+								<Shape>
+									<Appearance DEF='BAR_COLOR'>
+										<Material diffuseColor='1 0 1'>
+										</Material>
+									</Appearance>
+									<Box size='0.025 1 0.025'> </Box>
+								</Shape>
+							</Transform>
+							<Transform id="bar2" translation='0.75 0.5 0'>
+								<Shape>
+									<Appearance USE='BAR_COLOR'>
+									</Appearance>
+									<Box size='0.025 1.0 0.025'> </Box>
+								</Shape>
+							</Transform>
+							<Transform id="bar3" translation='1.25 0.5 0'>
+								<Shape>
+									<Appearance USE='BAR_COLOR'>
+									</Appearance>
+									<Box size='0.025 1.0 0.025'> </Box>
+								</Shape>
+							</Transform>
+							<Transform id="bar4" translation='1.75 0.5 0'>
+								<Shape>
+									<Appearance USE='BAR_COLOR'>
+									</Appearance>
+									<Box size='0.025 1.0 0.025'> </Box>
+								</Shape>
+							</Transform>
+					</Scene>
+				</X3D>
+			</td>
+			<td width="50%" align="left" valign="top" scope="col">
+				Bar chart example <br> <br>
+				label x-axis: <input type="text" id="label-x" value="building id" size="12" /> <br>
+				label y-axis: <input type="text" id="label-y" value="year" size="12" /><br>
+				attribute year of construction: <br>
+				<input type="text" id="yoc-b1" value="1960" size="12" /><br>
+				<input type="text" id="yoc-b2" value="1968" size="12" /><br>
+				<input type="text" id="yoc-b3" value="1980" size="12" /><br>
+				<input type="text" id="yoc-b4" value="1985" size="12" /><br>
+				<input type="button" value="draw" onclick="drawBarChart()" /> <br>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="x3dom.js"></script>
+	<script>
+		function drawBarChart() {
+			var labelx = document.getElementById("label-x").value;
+			var chartlabelx = document.getElementById("chartlabel-x");
+			chartlabelx.setAttribute("string", labelx);
+			var labely = document.getElementById("label-y").value;
+			var chartlabely = document.getElementById("chartlabel-y");
+			chartlabely.setAttribute("string", labely);
+			var yocb1 = document.getElementById("yoc-b1").value;
+			var yocb2 = document.getElementById("yoc-b2").value;
+			var yocb3 = document.getElementById("yoc-b3").value;
+			var yocb4 = document.getElementById("yoc-b4").value;
+			yocb1 = (yocb1 - 1950) / 10;
+			var bar1 = document.getElementById("bar1");
+			bar1.setAttribute("translation", "0.25 " + yocb1 / 2.0 + " 0");
+			bar1.setAttribute("scale", "1 " + yocb1 + " 1");
+			yocb2 = (yocb2 - 1950) / 10;
+			var bar2 = document.getElementById("bar2");
+			bar2.setAttribute("translation", "0.75 " + yocb2 / 2.0 + " 0");
+			bar2.setAttribute("scale", "1 " + yocb2 + " 1");
+			yocb3 = (yocb3 - 1950) / 10;
+			var bar3 = document.getElementById("bar3");
+			bar3.setAttribute("translation", "1.25 " + yocb3 / 2.0 + " 0");
+			bar3.setAttribute("scale", "1 " + yocb3 + " 1");
+			yocb4 = (yocb4 - 1950) / 10;
+			var bar4 = document.getElementById("bar4");
+			bar4.setAttribute("translation", "1.75 " + yocb4 / 2.0 + " 0");
+			bar4.setAttribute("scale", "1 " + yocb4 + " 1");
+		}
+	</script>
+</body>
+
+</html>

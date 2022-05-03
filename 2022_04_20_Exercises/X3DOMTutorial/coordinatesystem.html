@@ -1,0 +1,120 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Coordinate system </title>
+	<link rel="stylesheet" type="text/css" href="x3dom.css">
+	</link>
+</head>
+
+<body>
+	<h1> Coordinate system </h1>
+	<table width="100%" height="85%" border="0">
+		<tr>
+			<td width="50%" align="center" valign="top" scope="col">
+				<X3D id="shapedata" width="600px" height="600px" style="float:left">
+					<Scene>
+						<background transparency='0' skyColor='1 1 1'> </background>
+						<!-- Invoke CoordinateAxes in other scenes as an Inline child inside a scaling Transform node, at the topmost level of the scene graph. -->
+						<!-- Each arrow goes from +1m to -1m to allow linear scaling to fit a scene -->
+						<!-- Note each label rotates about the scene's vertical Y axis for consistency, enabling local orientation by user -->
+						<Group>
+							<!-- Vertical Y arrow and label -->
+							<Group DEF='ArrowGreen'>
+								<Shape>
+									<Appearance DEF='Green'>
+										<Material diffuseColor='0 1 0'> </Material>
+									</Appearance>
+									<Cylinder DEF='ArrowCylinder' radius='.025' top='false'> </Cylinder>
+								</Shape>
+								<Transform translation='0 1 0'>
+									<Shape>
+										<Appearance USE='Green'> </Appearance>
+										<Cone DEF='ArrowCone' bottomRadius='.05' height='.1'> </Cone>
+									</Shape>
+								</Transform>
+							</Group>
+							<Transform translation='0 1.08 0'>
+								<Billboard>
+									<Shape>
+										<Appearance DEF='LABEL_APPEARANCE'>
+											<Material diffuseColor='0 0 0'> </Material>
+										</Appearance>
+										<Text string='"Y"'>
+											<FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'> </FontStyle>
+										</Text>
+									</Shape>
+								</Billboard>
+							</Transform>
+							<Transform rotation='0 0 1 -1.57079'>
+								<!-- Horizontal X arrow and label -->
+								<Group DEF='ArrowRed'>
+									<Shape>
+										<Appearance DEF='Red'>
+											<Material diffuseColor='.7 .1 .1' emissiveColor='.33 0 0' />
+										</Appearance>
+										<Cylinder USE='ArrowCylinder'> </Cylinder>
+									</Shape>
+									<Transform translation='0 1 0'>
+										<Shape>
+											<Appearance USE='Red'> </Appearance>
+											<Cone USE='ArrowCone'> </Cone>
+										</Shape>
+									</Transform>
+								</Group>
+								<Transform rotation='0 0 1 1.57079' translation='.072 1.1 0'>
+									<!-- note label rotated back to original coordinate frame -->
+									<Billboard>
+										<Shape>
+											<Appearance USE='LABEL_APPEARANCE'>
+											</Appearance>
+											<Text string='"X"'>
+												<FontStyle USE='LABEL_FONT'>
+											</Text>
+										</Shape>
+									</Billboard>
+								</Transform>
+							</Transform>
+							<Transform rotation='1 0 0 1.57079'>
+								<!-- Z arrow and label -->
+								<Group DEF='ArrowBlue'>
+									<Shape>
+										<Appearance DEF='Blue'>
+											<Material diffuseColor='0  0 1'> </Material>
+										</Appearance>
+										<Cylinder USE='ArrowCylinder'> </Cylinder>
+									</Shape>
+									<Transform translation='0 1 0'>
+										<Shape>
+											<Appearance USE='Blue'> </Appearance>
+											<Cone USE='ArrowCone'> </Cone>
+										</Shape>
+									</Transform>
+								</Group>
+								<Transform rotation='1 0 0 -1.57079' translation='0 1.1 .072'>
+									<!-- note label rotated back to original coordinate frame -->
+									<Billboard>
+										<Shape>
+											<Appearance USE='LABEL_APPEARANCE'>
+											</Appearance>
+											<Text string='"Z"'>
+												<FontStyle USE='LABEL_FONT'>
+											</Text>
+										</Shape>
+									</Billboard>
+								</Transform>
+							</Transform>
+						</Group>
+					</Scene>
+				</X3D>
+			</td>
+			<td width="50%" align="left" valign="top" scope="col">
+				In X3DOM, a right hand coordinate system is used. The Y-axis is pointing up. <br> <br>
+				<img src="img/right_hand_system.png" width="178" />
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="x3dom.js"></script>
+</body>
+
+</html>

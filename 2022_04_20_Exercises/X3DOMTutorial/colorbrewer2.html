@@ -1,0 +1,134 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Material brewer</title>
+  <!-- source Colorpicker slider: http://jqueryui.com/slider/#colorpicker -->
+  <link rel="stylesheet" type="text/css" href="x3dom.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  </link>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  </link>
+  <style>
+    #red,
+    #green,
+    #blue {
+      float: left;
+      clear: left;
+      width: 300px;
+      margin: 15px;
+    }
+
+    #red .ui-slider-range {
+      background: #ef2929;
+    }
+
+    #red .ui-slider-handle {
+      border-color: #ef2929;
+    }
+
+    #green .ui-slider-range {
+      background: #8ae234;
+    }
+
+    #green .ui-slider-handle {
+      border-color: #8ae234;
+    }
+
+    #blue .ui-slider-range {
+      background: #729fcf;
+    }
+
+    #blue .ui-slider-handle {
+      border-color: #729fcf;
+    }
+  </style>
+</head>
+
+<body class="ui-widget-content" style="border:0;">
+  <table width="100%" height="85%" border="0">
+    <tr>
+      <td width="50%" align="center" valign="top" scope="col">
+        <X3D id="shapedata" width="600px" height="600px" style="float:left">
+          <Scene>
+            <Shape>
+              <Appearance>
+                <Material id="material" diffuseColor="0.980, 0.502, 0.447"> </Material>
+              </Appearance>
+              <Sphere radius="2.0"> </Sphere>
+            </Shape>
+          </Scene>
+        </X3D>
+      </td>
+      <td width="50%" align="left" valign="top" scope="col">
+        <p>The following example will show you haw to interactively modify the 3D scene.</p>
+        <div id="red"></div>
+        <div id="green"></div>
+        <div id="blue"></div>
+        <p>
+          <br><br><br><br><br><br><br><br><br><br>
+          The diffuse color of a material will be interactively changed.
+          A JavaScript <a href="https://jqueryui.com/slider/#colorpicker target=" _blank"> RGB color picker </a> is used
+          and modified.
+          If the RGB color value is changed, the diffuse material of the sphere shall be changed as well. So we need to
+          get the Material node first.
+          This is done by the getElementById function in X3DOM. Of course, the Material node needs to have an unique id.
+        <pre>
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	  &lt;Scene&gt;
+	    &lt;Shape&gt; 
+   	      &lt;Appearance&gt;
+     	        &lt;Material id="material" diffuseColor="0.980, 0.502, 0.447"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+	      &lt;Sphere radius="2.0"&gt; &lt;/Sphere&gt;
+ 	    &lt;/Shape&gt;
+	  &lt;/Scene&gt;
+	&lt;/X3D&gt;
+    </pre>
+        <br>
+        For example, if the diffuse color should be set to red, the Material node is referenced by its id and the
+        attribute diffuseColor is set to
+        "1.0 0.0 0.0". The attribute value is always a string.
+        <pre>
+    var mat = document.getElementById("material");
+    mat.setAttribute("diffuseColor", "1.0 0.0 0.0");      
+    </pre>
+        In the example, the RGB value is fetched from the slider. As the slider gives the RGB values between 0 and 255,
+        they have to be transformed to
+        arithmetic values between 0.0 and 1.0. After that, the RBG value has to be formatted as string.
+        <pre>
+      var mat = document.getElementById("material");
+      rgbstring = " "+ red/255 + " " + green/255 + " " + blue/255;
+      mat.setAttribute("diffuseColor", rgbstring);
+    </pre>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="x3dom.js"></script>
+  <script>
+    function refreshDiffuseMaterial() {
+      var red = $("#red").slider("value"),
+        green = $("#green").slider("value"),
+        blue = $("#blue").slider("value");
+      var mat = document.getElementById("material");
+      rgbstring = " " + red / 255 + " " + green / 255 + " " + blue / 255;
+      mat.setAttribute("diffuseColor", rgbstring);
+    }
+    $(function () {
+      $("#red, #green, #blue").slider({
+        orientation: "horizontal",
+        range: "min",
+        max: 255,
+        value: 127,
+        slide: refreshDiffuseMaterial,
+        change: refreshDiffuseMaterial
+      });
+      $("#red").slider("value", 255);
+      $("#green").slider("value", 140);
+      $("#blue").slider("value", 60);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> indexed face set and material </title>
+	<link rel="stylesheet" type="text/css" href="x3dom.css">
+</head>
+
+<body>
+	<h1> indexed face set and material </h1>
+	<table width="100%" height="85%" border="0">
+		<tr>
+			<td width="50%" align="center" valign="top" scope="col">
+				<X3D id="shapedata" width="600px" height="600px" style="float:left">
+					<Scene>
+						<Shape>
+							<!-- roof -->
+							<Appearance>
+								<Material diffuseColor="0.980, 0.502, 0.447"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex="  7 4 8 -1 4 5 8 -1 5 6 8 -1 6 7 8 -1">
+								<Coordinate DEF="pointset" point="-1 0 1, 1 0 1, 1 0 -1, -1 0 -1,
+             	            -1 2 1, 1 2 1, 1 2 -1, -1 2 -1, 0 3 0 ">
+								</Coordinate>
+								<TextureCoordinate DEF="texcoord" point="0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0">
+									</TextureCoorinate>
+							</IndexedFaceSet>
+						</Shape>
+						<Shape>
+							<!-- wall 1  -->
+							<Appearance>
+								<ImageTexture
+									url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Brick_wall_close-up_view.jpg/800px-Brick_wall_close-up_view.jpg">
+								</ImageTexture>
+								<Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex="0 1 5 4 -1 ">
+								<Coordinate USE="pointset">
+								</Coordinate>
+							</IndexedFaceSet>
+						</Shape>
+						<Shape>
+							<!-- wall -->
+							<Appearance>
+								<ImageTexture
+									url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Peach_Rinkysplash.jpg/800px-Peach_Rinkysplash.jpg">
+								</ImageTexture>
+								<Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex=" 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1"
+								texCoordIndex="0 1 2 3 -1 0 1 2 3 -1 0 1 2 3">
+								<Coordinate USE="pointset">
+								</Coordinate>
+								<TextureCoordinate USE="texcoord">
+									</TextureCoorinate>
+							</IndexedFaceSet>
+						</Shape>
+						<Shape>
+							<!-- ground -->
+							<Appearance>
+								<Material diffuseColor="0.180, 0.280, 0.230"> </Material>
+							</Appearance>
+							<IndexedFaceSet solid="true" ccw="true" coordIndex=" 0 3 2 1 -1 ">
+								<Coordinate USE="pointset">
+								</Coordinate>
+							</IndexedFaceSet>
+						</Shape>
+					</Scene>
+				</X3D>
+			</td>
+			<td width="50%" align="left" valign="top" scope="col">
+				Example: <a href="https://doc.x3dom.org/tutorials/basics/imagesMovies/index.html" target="_blank"> Using Images
+					and Movies as Textures </a>
+				<br>
+				<a href="https://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/texturing.html"
+					target="_blank"> Textures </a>
+				<br>
+				<a href="https://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/geometry3D.html#IndexedFaceSet"
+					target="_blank">
+					How Textures are mapped on IndexedFaceSet:
+				</a><br>
+				<br>
+				<pre class="prettyprint">
+	      &lt;Appearance&gt;
+                &lt;ImageTexture  url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Peach_Rinkysplash.jpg/800px-Peach_Rinkysplash.jpg"&gt;&lt;/ImageTexture&gt;              
+     	        &lt;Material diffuseColor="0.753, 0.753, 0.753"&gt; &lt;/Material&gt;
+   	      &lt;/Appearance&gt;
+        </pre>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="x3dom.js"></script>
+</body>
+
+</html>

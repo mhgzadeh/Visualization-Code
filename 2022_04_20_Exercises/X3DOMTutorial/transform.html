@@ -1,0 +1,97 @@
+﻿<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Transformation </title>
+	<link rel="stylesheet" type="text/css" href="x3dom.css">
+	</link>
+</head>
+
+<body>
+	<h1> Transformation </h1>
+	<table width="100%" height="85%" border="0">
+		<tr>
+			<td width="50%" align="center" valign="top" scope="col">
+				<X3D id="shapedata" width="600px" height="600px" style="float:left">
+					<Scene>
+						<background transparency='0' skyColor='1 1 1'> </background>
+						<Shape>
+							<Appearance>
+								<Material diffuseColor='1 1 0'></Material>
+							</Appearance>
+							<Box></Box>
+						</Shape>
+						<Transform translation='-3 1 -3' rotation="0 0 -1 -1.57">
+							<Shape>
+								<Appearance>
+									<Material diffuseColor='0 1 0'></Material>
+								</Appearance>
+								<Cone></Cone>
+							</Shape>
+						</Transform>
+						<Transform translation='3 0 0'>
+							<Shape>
+								<Appearance>
+									<Material diffuseColor='0 1 1'></Material>
+								</Appearance>
+								<Sphere></Sphere>
+							</Shape>
+						</Transform>
+						<Transform translation='5 0 0'>
+							<Shape>
+								<Appearance>
+									<Material diffuseColor='0 0 1'></Material>
+								</Appearance>
+								<Sphere></Sphere>
+							</Shape>
+						</Transform>
+					</Scene>
+				</X3D>
+			</td>
+			<td width="50%" align="left" valign="top" scope="col">
+				In X3DOM, a shape such as Box, Cone, and Sphere is always created at the center of the coordinate
+				system. The
+				size of the shape can be modified,
+				but the location is always centered at (0,0,0). To move a shape to another location, a transformation
+				needs to
+				be applied. See slides for
+				the different kinds of affine transformations: translation, rotation, and scaling.
+				<br>
+				<pre class="prettyprint">
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	&lt;Scene&gt; 
+          &lt;background transparency='0' skyColor='1 1 1'&gt; &lt;/background&gt;
+      		&lt;Shape&gt; 
+        	  &lt;Appearance&gt; 
+        	    &lt;Material diffuseColor='1 0 0'&gt;&lt;/Material&gt; 
+        	  &lt;/Appearance&gt; 
+        	  &lt;Box&gt;&lt;/Box&gt; 
+    		&lt;/Shape&gt; 
+    		&lt;Transform translation='-3 0 0'&gt; 
+    		  &lt;Shape&gt; 
+        	    &lt;Appearance&gt; 
+        	      &lt;Material diffuseColor='0 1 0'&gt;&lt;/Material&gt; 
+        	    &lt;/Appearance&gt; 
+        	    &lt;Cone&gt;&lt;/Cone&gt; 
+    		  &lt;/Shape&gt; 
+    		&lt;/Transform&gt; 
+   		&lt;Transform translation='3 0 0'&gt; 
+    		  &lt;Shape&gt; 
+        	    &lt;Appearance&gt; 
+        	      &lt;Material diffuseColor='0 0 1'&gt;&lt;/Material&gt; 
+        	    &lt;/Appearance&gt; 
+        	    &lt;Sphere&gt;&lt;/Sphere&gt;
+    		  &lt;/Shape&gt; 
+    		&lt;/Transform&gt; 
+	  &lt;/Scene&gt;
+        &lt;/X3D&gt;  
+        </pre>
+				<br>
+				This example illustrates how to move shapes to another location.
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="x3dom.js"></script>
+</body>
+
+</html>

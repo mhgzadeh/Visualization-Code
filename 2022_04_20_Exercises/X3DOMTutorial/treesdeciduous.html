@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> Trees Deciduous </title>
+  <link rel="stylesheet" type="text/css" href="x3dom.css">
+  </link>
+</head>
+
+<body>
+  <h1> Trees Deciduous </h1>
+  <table width="100%" height="85%" border="0">
+    <tr>
+      <td width="50%" align="center" valign="top" scope="col">
+        <X3D id="shapedata" width="600px" height="600px">
+          <Scene>
+            <background transparency='0' skyColor='1 1 1'> </background>
+            <transform id="root" translation="0 0 0">
+              <Transform id="trunk" translation='0 1.5 0'>
+                <Shape>
+                  <Appearance>
+                    <Material diffuseColor='0.5 0.5 0.5'></Material>
+                  </Appearance>
+                  <Cylinder id="geometryTrunk" radius="0.2" height="3"></Cylinder>
+                </Shape>
+              </Transform>
+              <Transform id="crown" translation='0 6.5 0'>
+                <Transform id="crown-s" scale='1 1.75 1'>
+                  <Shape>
+                    <Appearance>
+                      <Material diffuseColor='0 1 0'></Material>
+                    </Appearance>
+                    <Sphere id="geometryCrown" radius="2.0" subdivision="8,8"></Sphere>
+                  </Shape>
+                </Transform>
+              </Transform>
+            </transform>
+          </Scene>
+        </X3D>
+      </td>
+      <td width="50%" align="left" valign="top" scope="col">
+        <img src="img/Abb-Laubbaum.png" alt="Abb-Laubbaum" width="259" height="398"
+          class="alignnone size-full wp-image-252" /><br>
+        Baum Parameter:<br>
+        Gesamth&ouml;he h= <input type="text" id="h" name="h" size="5" value="10" /> m<br>
+        H&ouml;he Stamm ht= <input type="text" id="ht" name="ht" size="5" value="3" /> m<br>
+        Kronendurchmesser dc= <input type="text" id="dc" name="Kronendurchmesser" size="5" value="4" /> m<br>
+        Stammdurchmesser dt=<input type="text" id="dt" name="Stammdurchmesser" size="5" value="0.4" /> m<br>
+        Position:
+        <input type="text" id="pos_x" name="pos_x" size="5" value="0" />
+        <input type="text" id="pos_y" name="pos_y" size="5" value="0" />
+        <input type="text" id="pos_z" name="pos_z" size="5" value="0" /><br>
+        <input type="button" value="DrawTree" onclick="drawTree()" /><br>
+        <b>Approximation Stamm</b><br>
+        subdivision: 4 <input type="range" id="subdivTrunk" min="4" max="64" step="1" value="32"
+          onchange="changeSubDivisionTrunk()" />64<br>
+        <b>Approximation Krone</b><br>
+        subdivision: 4 <input type="range" id="subdivCrown" min="4" max="64" step="1" value="8"
+          onchange="changeSubDivisionCrown()" />64
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="x3dom.js"></script>
+  <script type="text/javascript">
+    function drawTree() {
+      // read input parameter
+      var h = document.getElementById("h").value;
+      var ht = document.getElementById("ht").value;
+      var dc = document.getElementById("dc").value;
+      var dt = document.getElementById("dt").value;
+      var x = document.getElementById("pos_x").value;
+      var y = document.getElementById("pos_y").value;
+      var z = document.getElementById("pos_z").value;
+
+      // get X3D nodes
+      var transformTree = document.getElementById('root');
+      var transformTrunk = document.getElementById('trunk');
+      var geometryTrunk = document.getElementById('geometryTrunk');
+      var transformCrown = document.getElementById('crown');
+      var scaleCrown = document.getElementById('crown-s');
+      var geometryCrown = document.getElementById('geometryCrown');
+
+      // map input parameter to X3D model
+      // trunk
+      transformTrunk.setAttribute("translation", "0 " + ht / 2 + " 0");
+      geometryTrunk.setAttribute("radius", " " + dt / 2);
+      geometryTrunk.setAttribute("height", ht);
+      // crown
+      transformCrown.setAttribute("translation", "0 " + (h / 2 + ht / 2) + " 0");
+      scaleCrown.setAttribute("scale", "1 " + (h - ht) / dc + " 1");
+      geometryCrown.setAttribute("radius", dc / 2);
+      // position
+      transformTree.setAttribute("translation", x + " " + y + " " + z);
+    }
+
+    function changeSubDivisionTrunk() {
+      var trunk = document.getElementById("geometryTrunk");
+      var subdiv = document.getElementById("subdivTrunk").value;
+      trunk.setAttribute("subdivision", subdiv);
+    }
+
+    function changeSubDivisionTrunk() {
+      var trunk = document.getElementById("geometryTrunk");
+      var subdiv = document.getElementById("subdivTrunk").value;
+      trunk.setAttribute("subdivision", subdiv);
+    }
+
+    function changeSubDivisionCrown() {
+      var crown = document.getElementById("geometryCrown");
+      var subdiv = document.getElementById("subdivCrown").value;
+      crown.setAttribute("subdivision", subdiv + "," + subdiv);
+    }
+  </script>
+</body>
+
+</html>

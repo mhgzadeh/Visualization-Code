@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> Hello X3DOM </title>
+  <link rel="stylesheet" type="text/css" href="x3dom.css">
+  </link>
+</head>
+
+<body>
+  <h1> Hello X3DOM </h1>
+  <table width="100%" height="85%" border="0">
+    <tr>
+      <td width="50%" align="center" valign="top" scope="col">
+        <X3D id="shapedata" width="600px" height="600px" style="float:left">
+          <Scene>
+            <background transparency='0' skyColor='0.6, 0.00, 0.00'> </background>
+            <Shape>
+              <appearance>
+                <material diffuseColor='1 1 0'></material>
+              </appearance>
+              <Box> </Box>
+            </Shape>
+          </Scene>
+        </X3D>
+      </td>
+      <td width="50%" align="left" valign="top" scope="col">
+        In this example, a simple 3D scene is integrated into a web page. This is done by the &lt;X3D&gt; tag in the
+        HTML document.
+        The &lt;X3D&gt; tag is interpreted by the x3dom.js Java Script library. You can either make a local copy of the
+        library or use it
+        from the server. It is recommended to use the library from the server to ensure that you always have the latest
+        version.
+        A local copy of the library is useful for development, if you are not always connected.
+        <br>
+        <pre class="prettyprint">
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	&lt;Scene&gt; 
+          &lt;background transparency='0' skyColor='1 0 0'&gt; &lt;/background&gt;
+            &lt;Shape id=box&gt; 
+              &lt;Box&gt; &lt;/Box&gt;
+            &lt;/Shape&gt;
+	  &lt;/Scene&gt;
+        &lt;/X3D&gt;  
+        </pre>
+        The &lt;X3D&gt; tag defines the size of the 3D canvas on the web page as well as the scene graph.
+        An <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/concepts.html#scenegraph"
+          target="_blank"> X3D scene graph </a>
+        is defined as a directed acyclic graph.
+        The nodes of the scene graph will be rendered on the screen from a given camera position.
+        The default camera position is (0,0,10) pointing to the negative z-Axis.
+        So objects at the center of the coordinate system will be displayed on the screen.
+        A shape node contains a geometry. In this example, it is a simple box. The center of the box is at (0,0,0) with
+        default size 2 in all dimensions
+        <br>
+        The color of the background can be changed in the attribute skyColor. Currently it is red.
+        The color is defined using <a href="http://en.wikipedia.org/wiki/RGB_color_model" target="_blank"> RGB color
+          model </a>
+        with arithmetic notation (0.0 t0 1.0 per value). <br>
+        The color of the Box can be changed by applying an appearance to the shape node.
+        In X3D, the <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/index.html" target="_blank"> Shape
+          node </a> associates a geometry node with
+        nodes that define that geometry's appearance. The following example draws a blue box.
+        <pre class="prettyprint">
+	&lt;X3D id="shapedata" width="600px" height="600px" style="float:left"&gt;
+	&lt;Scene&gt; 
+          &lt;background transparency='0' skyColor='1 0 0'&gt; &lt;/background&gt;
+            &lt;Shape id=box&gt; 
+              &lt;appearance &gt; 
+                &lt;material diffuseColor='0 0 1'&gt;&lt;/material&gt; 
+              &lt;/appearance&gt; 
+              &lt;Box&gt; &lt;/Box&gt;
+            &lt;/Shape&gt;
+	  &lt;/Scene&gt;
+        &lt;/X3D&gt;  
+        </pre>
+        <shape>
+          <box></box>
+        </shape>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="x3dom.js"></script>
+</body>
+
+</html>
