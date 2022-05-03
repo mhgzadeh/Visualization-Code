@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+   <!-- Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+
+   <!-- Cesium CSS -->
+   <script src="https://cesium.com/downloads/cesiumjs/releases/1.92/Build/Cesium/Cesium.js"></script>
+
+   <!-- x3dom CSS -->
+   <link rel="stylesheet" href="./css/x3dom.css">
+
+   <!-- Custom CSS (Mohammad) -->
+   <link rel="stylesheet" href="./css/style.css">
+
+   <!-- Cesium JS -->
+   <link href="https://cesium.com/downloads/cesiumjs/releases/1.92/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+   <title>Stöckach</title>
+</head>
+
+<body>
+   <section class="container-fluid">
+      <div class="row">
+
+         <nav id="navbar-example2" class="navbar bg-danger px-3 position-fixed z-index-1000">
+            <a class="navbar-brand text-light" href="#">Hochschule für Technik Stuttgart</a>
+            <ul class="nav nav-pills">
+               <li class="nav-item">
+                  <a class="nav-link text-light" href="#Q2">Task B</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-light" href="#Q3">Task C</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-light" href="#Q4">Task D</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-light" href="#Q5">Task E</a>
+               </li>
+            </ul>
+         </nav>
+
+         <!-- Qb -->
+         <div class="row p-0 m-0">
+            <!-- X3D -->
+            <div id="Q2" class="col-6 p-0">
+               <X3D id="shapedata" class="col-12 h-100">
+                  <Scene>
+                     <background transparency='0' skyColor='0.8 0.8 0.8'> </background>
+
+                     <Shape>
+                        <Appearance>
+                           <Material diffuseColor='0 0.3 0.8'></Material>
+                        </Appearance>
+                        <Box></Box>
+                     </Shape>
+
+                     <Transform translation='-3 0 0'>
+                        <Shape>
+                           <Appearance>
+                              <Material diffuseColor='0.9, 0.6, 0.0'></Material>
+                           </Appearance>
+                           <Sphere></Sphere>
+                        </Shape>
+                     </Transform>
+
+                     <Transform translation='3 0 0' scale="0.8 1.5 1">
+                        <Shape>
+                           <Appearance>
+                              <Material diffuseColor='0.9, 0.6, 0.0'></Material>
+                           </Appearance>
+                           <Sphere></Sphere>
+                        </Shape>
+                     </Transform>
+
+                  </Scene>
+               </X3D>
+            </div>
+
+            <!-- Cesium -->
+            <div class="col-6 p-0 m-0">
+               <div id="cesiumContainerB"></div>
+            </div>
+         </div>
+
+         <!-- Qc -->
+         <div class="row p-0 m-0">
+            <div id="Q3" class="col-6 p-0">
+               <X3D id="shapedata" class="col-12 h-100">
+                  <Scene>
+
+                     <background transparency='0' skyColor='0.9, 0.6, 0.0'> </background>
+
+                     <Shape>
+                        <Appearance>
+                           <Material diffuseColor="0 0.3 0.8"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex=" 0 1 2 3 4 5-1">
+                           <Coordinate DEF="pointset" point="-2 -2 0, 2 -2 0, 2 2 0, -2 2 0,
+                                    -3 1 0, -1 0 0">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+
+
+                     <!-- Center -->
+                     <Transform translation='0 0 0'>
+                        <Shape DEF='Point'>
+                           <Appearance DEF='Blue'>
+                              <Material diffuseColor='1 0 0'> </Material>
+                           </Appearance>
+                           <Sphere radius="0.1"> </Sphere>
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance DEF='LABEL_APPEARANCE'>
+                                    <Material diffuseColor='0 0 0'> </Material>
+                                 </Appearance>
+                                 <Text string='"OO"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P0 -->
+                     <Transform translation='-2 -2 0'>
+                        <Shape DEF='Point'>
+                           <Appearance DEF='Green'>
+                              <Material diffuseColor='0 1 0'> </Material>
+                           </Appearance>
+                           <Sphere radius="0.1"> </Sphere>
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance DEF='LABEL_APPEARANCE'>
+                                    <Material diffuseColor='0 0 0'> </Material>
+                                 </Appearance>
+                                 <Text string='"P0"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P1 -->
+                     <Transform translation='2 -2 0'>
+                        <Shape USE="Point">
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance USE='LABEL_APPEARANCE'>
+                                 </Appearance>
+                                 <Text string='"P1"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P2 -->
+                     <Transform translation='2 2 0'>
+                        <Shape USE="Point">
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance USE='LABEL_APPEARANCE'>
+                                 </Appearance>
+                                 <Text string='"P2"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P3 -->
+                     <Transform translation='-2 2 0'>
+                        <Shape USE="Point">
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance USE='LABEL_APPEARANCE'>
+                                 </Appearance>
+                                 <Text string='"P3"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P4 -->
+                     <Transform translation='-3 1 0'>
+                        <Shape USE="Point">
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance USE='LABEL_APPEARANCE'>
+                                 </Appearance>
+                                 <Text string='"P4"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+                     <!-- P5 -->
+                     <Transform translation='-1 0 0'>
+                        <Shape USE="Point">
+                        </Shape>
+                        <Transform translation='0 -0.75 0'>
+                           <Billboard>
+                              <Shape>
+                                 <Appearance USE='LABEL_APPEARANCE'>
+                                 </Appearance>
+                                 <Text string='"P5"'>
+                                    <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"' size='.2'>
+                                    </FontStyle>
+                                 </Text>
+                              </Shape>
+                           </Billboard>
+                        </Transform>
+                     </Transform>
+
+                  </Scene>
+               </X3D>
+            </div>
+
+            <div class="col-6 p-0 m-0">
+               <div id="cesiumContainerC"></div>
+            </div>
+         </div>
+
+         <!-- Qd -->
+         <div class="row p-0 m-0">
+            <div id="Q4" class="col-6 p-0">
+               <X3D id="shapedata" class="col-12 h-100">
+                  <Scene>
+
+                     <background transparency='0' skyColor='0.9, 0.6, 0.0'> </background>
+
+                     <Shape>
+                        <Appearance>
+                           <Material diffuseColor="0 0.3 0.8"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex=" 0 1 2 3 -1">
+                           <Coordinate DEF="pointset" point="-2.5 -2.5 0,2.55 -2.5 0, 2.5 2.5 0, -2.5 2.5 0,
+                                 -0.8 -0.8 0, 0.8 -0.8 0, 0 0.8 0">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <Appearance>
+                           <Material diffuseColor="0.9, 0.6, 0.0"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="4 5 6 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                  </Scene>
+               </X3D>
+            </div>
+
+            <div class="col-6 p-0 m-0">
+               <div id="cesiumContainerD"></div>
+            </div>
+         </div>
+
+         <!-- Qe -->
+         <div class="row p-0 m-0">
+            <div id="Q5" class="col-6 p-0">
+               <X3D id="shapedata" class="col-12 h-100">
+                  <Scene>
+                     <background transparency='0' skyColor='0.8 0.8 0.8'> </background>
+
+                     <Shape>
+                        <Appearance>
+                           <Material diffuseColor="0.5 0.0 0.0"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex=" 4 5 1 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1
+                                3 2 1 0 -1 
+                                4 5 8 -1 5 11 8 -1 10 6 9 -1 6 7 9 -1 7 4 8 9">
+                           <Coordinate DEF="pointset" point="-1 -1 3, 1 -1 3, 1 -1 -3, -1 -1 -3,
+                                    -1 1 3, 1 1 3, 1 1 -3, -1 1 -3,
+                                    0 2 2, 0 2 -2,
+                                    1 1 -2, 1 1 2, -1 1 -2, -1 1 2">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <!-- wall 1  -->
+                        <Appearance>
+                           <ImageTexture url="./img/solar_panel.PNG">
+                           </ImageTexture>
+                           <Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="11 10 9 8 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <!-- wall 1  -->
+                        <Appearance>
+                           <ImageTexture
+                              url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Brick_wall_close-up_view.jpg/800px-Brick_wall_close-up_view.jpg">
+                           </ImageTexture>
+                           <Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="1 2 6 5 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <!-- wall 1  -->
+                        <Appearance>
+                           <ImageTexture
+                              url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Brick_wall_close-up_view.jpg/800px-Brick_wall_close-up_view.jpg">
+                           </ImageTexture>
+                           <Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="2 3 7 6 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <!-- wall 1  -->
+                        <Appearance>
+                           <ImageTexture
+                              url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Brick_wall_close-up_view.jpg/800px-Brick_wall_close-up_view.jpg">
+                           </ImageTexture>
+                           <Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="3 0 4 7 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <Shape>
+                        <!-- wall 1  -->
+                        <Appearance>
+                           <ImageTexture url="./img/enterance.PNG">
+                           </ImageTexture>
+                           <Material diffuseColor="0.753, 0.753, 0.753"> </Material>
+                        </Appearance>
+                        <IndexedFaceSet solid="true" ccw="true" coordIndex="0 1 5 4 -1">
+                           <Coordinate USE="pointset">
+                           </Coordinate>
+                        </IndexedFaceSet>
+                     </Shape>
+
+                     <!-- Center -->
+                     <!-- <Transform translation='0 0 0'>
+                                <Shape DEF='Point'>
+                                    <Appearance DEF='Blue'>
+                                        <Material diffuseColor='1 0 0'> </Material>
+                                    </Appearance>
+                                    <Sphere radius="0.1"> </Sphere>
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance DEF='LABEL_APPEARANCE'>
+                                                <Material diffuseColor='0 0 0'> </Material>
+                                            </Appearance>
+                                            <Text string='"OO"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P0 -->
+                     <!-- <Transform translation='-1 -1 3'>
+                                <Shape DEF='Point'>
+                                    <Appearance DEF='Green'>
+                                        <Material diffuseColor='0 1 0'> </Material>
+                                    </Appearance>
+                                    <Sphere radius="0.1"> </Sphere>
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance DEF='LABEL_APPEARANCE'>
+                                                <Material diffuseColor='0 0 0'> </Material>
+                                            </Appearance>
+                                            <Text string='"P0"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P1 -->
+                     <!-- <Transform translation='1 -1 3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P1"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P2 -->
+                     <!-- <Transform translation='1 -1 -3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P2"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P3 -->
+                     <!-- <Transform translation='-1 -1 -3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P3"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P4 -->
+                     <!-- <Transform translation='-1 1 3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P4"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P5 -->
+                     <!-- <Transform translation='1 1 3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P5"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P6 -->
+                     <!-- <Transform translation='1 1 -3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P6"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P7 -->
+                     <!-- <Transform translation='-1 1 -3'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 -0.75 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P7"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P8 -->
+                     <!-- <Transform translation='0 2 2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P8"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P9 -->
+                     <!-- <Transform translation='0 2 -2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P9"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P10 -->
+                     <!-- <Transform translation='1 1 -2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P10"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P11 -->
+                     <!-- <Transform translation='1 1 2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P11"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P12 -->
+                     <!-- <Transform translation='-1 1 -2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P12"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                     <!-- P13 -->
+                     <!-- <Transform translation='-1 1 2'>
+                                <Shape USE="Point">
+                                </Shape>
+                                <Transform translation='0 0.0 0'>
+                                    <Billboard>
+                                        <Shape>
+                                            <Appearance USE='LABEL_APPEARANCE'>
+                                            </Appearance>
+                                            <Text string='"P13"'>
+                                                <FontStyle DEF='LABEL_FONT' family='"SANS"' justify='"MIDDLE" "MIDDLE"'
+                                                    size='.2'> </FontStyle>
+                                            </Text>
+                                        </Shape>
+                                    </Billboard>
+                                </Transform>
+                            </Transform> -->
+                  </Scene>
+               </X3D>
+            </div>
+
+            <div class="col-6 p-0 m-0">
+               <div id="cesiumContainerE"></div>
+            </div>
+         </div>
+
+      </div>
+   </section>
+   <script src="./js/x3dom.js"></script>
+   <script src="./js/index.js" type="module"></script>
+
+   <script>
+      
+
+   </script>
+</body>
+
+</html>
